@@ -31,7 +31,7 @@ public class UpsaleForAccessoryGenerator implements Generator {
             Row row = rowIterator.next();
             if(row.getCell(1).getStringCellValue().equals("_MODEL_")) continue;
             Product product;
-            if (row.getCell(1).getStringCellValue().substring(3,5).equals("06")) {
+            if (row.getCell(3) == null && row.getCell(1).getStringCellValue().substring(3,5).equals("06")) {
                 product = new Product(row.getCell(0).getStringCellValue(), new DataFormatter().formatCellValue(row.getCell(2)), row.getCell(1).getStringCellValue());
                 productList.add(product);
             }
@@ -47,7 +47,7 @@ public class UpsaleForAccessoryGenerator implements Generator {
         while (mainRowIterator.hasNext()) {
             Row row = mainRowIterator.next();
             if(row.getCell(1).getStringCellValue().equals("_MODEL_")) continue;
-            if (row.getCell(1).getStringCellValue().substring(3,5).equals("06")) {
+            if (row.getCell(3) == null && row.getCell(1).getStringCellValue().substring(3,5).equals("06")) {
                 StringBuilder resultUpsales = new StringBuilder();
                 List<String> trpLst = Arrays.asList(triples.get(tripleNum).split(","));
                 trpLst.forEach(t -> {

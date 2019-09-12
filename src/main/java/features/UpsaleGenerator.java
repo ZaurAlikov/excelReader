@@ -21,6 +21,7 @@ public class UpsaleGenerator implements Generator {
     private Map<String, Product> forBoxesMap = new HashMap<>();
     private Map<String, Product> forVeloMap = new HashMap<>();
     private Map<String, Product> forSnowMap = new HashMap<>();
+    private Map<String, Product> forBagFAccessories = new HashMap<>();
 
     @Override
     public void generate() throws IOException {
@@ -45,6 +46,7 @@ public class UpsaleGenerator implements Generator {
             fillMap(1, forBoxesMap, row);
             fillMap(2, forVeloMap, row);
             fillMap(3, forSnowMap, row);
+            fillMap(5, forBagFAccessories, row);
         }
 
         Iterator<Row> mainRowIterator = sheet.rowIterator();
@@ -62,6 +64,9 @@ public class UpsaleGenerator implements Generator {
             }
             if (row.getCell(1).getStringCellValue().substring(3,5).equals("07")) {
                 writeUpsale(forSnowMap, sheet, row);
+            }
+            if (row.getCell(1).getStringCellValue().substring(3,5).equals("19")) {
+                writeUpsale(forBagFAccessories, sheet, row);
             }
         }
         inputStream.close();
@@ -84,12 +89,12 @@ public class UpsaleGenerator implements Generator {
     private void writeUpsale(Map<String, Product> productMap, XSSFSheet sheet, Row row) {
         List<String> sku = new ArrayList<>();
         productMap.forEach((key, value) -> sku.add(value.getSku()));
-        if (row.getCell(0).getStringCellValue().contains("Thule")) {
-            sku.add("450400");
-        }
-        if (row.getCell(1).getStringCellValue().substring(3,5).equals("04") && row.getCell(0).getStringCellValue().contains("LUX")) {
-            sku.add("03-06-002671");
-        }
+//        if (row.getCell(0).getStringCellValue().contains("Thule")) {
+//            sku.add("450400");
+//        }
+//        if (row.getCell(1).getStringCellValue().substring(3,5).equals("04") && row.getCell(0).getStringCellValue().contains("LUX")) {
+//            sku.add("03-06-002671");
+//        }
         if (sku.size() > 0) {
             StringBuilder upsale = new StringBuilder();
             int countUpsale = 6;
