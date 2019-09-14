@@ -24,12 +24,12 @@ public class Main {
 //        Generator modelGenerator = new UpsaleForAccessoryGenerator();
 //        modelGenerator.generate();
 
-//        Generator modelGenerator = new RelatedModelGenerator();
-//        modelGenerator.generate();
-
-
-        Generator modelGenerator = new UpsaleGenerator();
+        Generator modelGenerator = new RelatedModelGenerator();
         modelGenerator.generate();
+
+
+//        Generator modelGenerator = new UpsaleGenerator();
+//        modelGenerator.generate();
 
 //        File file = new File("c:/Users/Admin/Desktop/rel.xlsx");
 //        FileInputStream inputStream = new FileInputStream(file);

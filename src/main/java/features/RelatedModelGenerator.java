@@ -40,7 +40,7 @@ public class RelatedModelGenerator implements Generator {
             //количество сопутствующих товаров
             int count = 4;
 
-            List<Product> sorted = sortModel(row.getCell(1).getStringCellValue().substring(4, 5), row.getCell(0).getStringCellValue());
+            List<Product> sorted = sortModel(row.getCell(1).getStringCellValue().substring(3, 5), row.getCell(0).getStringCellValue());
             List<String> models = overPrice(sorted, row.getCell(2).getNumericCellValue(), row.getCell(1).getStringCellValue(), count);
             if (models.size() > 0) {
 //                StringBuilder relatedModels = new StringBuilder();
@@ -102,7 +102,7 @@ public class RelatedModelGenerator implements Generator {
     private List<Product> sortModel(String num, String name){
         List<Product> sortedProducts = new ArrayList<>();
         productList.forEach((p)-> {
-            if(p.getSku().substring(4,5).equals(num)) {
+            if(p.getSku().substring(3,5).equals(num)) {
                 if(num.equals("4")) {
                     if(name.contains("Чёрный") || name.contains("Черный") || name.contains("Black") || (name.contains("Карбон") && !name.contains("Евродеталь"))) {
                         if(p.getName().contains("Чёрный") || p.getName().contains("Черный") || p.getName().contains("Black") || (p.getName().contains("Карбон") && !p.getName().contains("Евродеталь"))) {
